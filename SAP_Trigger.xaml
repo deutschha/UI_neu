@@ -1,0 +1,731 @@
+<Activity mc:Ignorable="sap sap2010" x:Class="SAP_Trigger" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:ss="clr-namespace:System.Security;assembly=mscorlib" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <x:Members>
+    <x:Property Name="in_auftrnr" Type="InArgument(x:String)" />
+    <x:Property Name="out_10er" Type="OutArgument(x:String)" />
+    <x:Property Name="out_10erstk" Type="OutArgument(x:String)" />
+    <x:Property Name="out_11er1" Type="OutArgument(x:String)" />
+    <x:Property Name="out_11er1stk" Type="OutArgument(x:String)" />
+    <x:Property Name="out_11er2" Type="OutArgument(x:String)" />
+    <x:Property Name="out_11er2stk" Type="OutArgument(x:String)" />
+    <x:Property Name="auftrag" Type="OutArgument(x:String)" />
+    <x:Property Name="elfer" Type="InArgument(x:String)" />
+  </x:Members>
+  <mva:VisualBasic.Settings>
+    <x:Null />
+  </mva:VisualBasic.Settings>
+  <sap:VirtualizedContainerService.HintSize>1196,7830</sap:VirtualizedContainerService.HintSize>
+  <sap2010:WorkflowViewState.IdRef>SAP_Trigger_1</sap2010:WorkflowViewState.IdRef>
+  <TextExpression.NamespacesForImplementation>
+    <scg:List x:TypeArguments="x:String" Capacity="56">
+      <x:String>System.Activities</x:String>
+      <x:String>System.Activities.Statements</x:String>
+      <x:String>System.Activities.Expressions</x:String>
+      <x:String>System.Activities.Validation</x:String>
+      <x:String>System.Activities.XamlIntegration</x:String>
+      <x:String>Microsoft.VisualBasic</x:String>
+      <x:String>Microsoft.VisualBasic.Activities</x:String>
+      <x:String>System</x:String>
+      <x:String>System.Collections</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Data</x:String>
+      <x:String>System.Diagnostics</x:String>
+      <x:String>System.Drawing</x:String>
+      <x:String>System.IO</x:String>
+      <x:String>System.Linq</x:String>
+      <x:String>System.Net.Mail</x:String>
+      <x:String>System.Xml</x:String>
+      <x:String>System.Xml.Linq</x:String>
+      <x:String>UiPath.Core</x:String>
+      <x:String>UiPath.Core.Activities</x:String>
+      <x:String>System.Windows.Markup</x:String>
+      <x:String>System.Security</x:String>
+      <x:String>System.Net</x:String>
+      <x:String>UiPath.Excel</x:String>
+      <x:String>Microsoft.VisualBasic.CompilerServices</x:String>
+      <x:String>UiPath.Vision.OCR</x:String>
+      <x:String>System.Xml.Serialization</x:String>
+      <x:String>System.Windows</x:String>
+      <x:String>UiPath.CV</x:String>
+    </scg:List>
+  </TextExpression.NamespacesForImplementation>
+  <TextExpression.ReferencesForImplementation>
+    <scg:List x:TypeArguments="AssemblyReference" Capacity="48">
+      <AssemblyReference>System.Activities</AssemblyReference>
+      <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
+      <AssemblyReference>mscorlib</AssemblyReference>
+      <AssemblyReference>System.Data</AssemblyReference>
+      <AssemblyReference>System.Data.DataSetExtensions</AssemblyReference>
+      <AssemblyReference>System</AssemblyReference>
+      <AssemblyReference>System.Drawing</AssemblyReference>
+      <AssemblyReference>System.Core</AssemblyReference>
+      <AssemblyReference>System.Xml</AssemblyReference>
+      <AssemblyReference>System.Xml.Linq</AssemblyReference>
+      <AssemblyReference>PresentationFramework</AssemblyReference>
+      <AssemblyReference>WindowsBase</AssemblyReference>
+      <AssemblyReference>PresentationCore</AssemblyReference>
+      <AssemblyReference>System.Xaml</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.UiAutomation.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities.Design</AssemblyReference>
+      <AssemblyReference>UiPath.Excel.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Vision.Core</AssemblyReference>
+      <AssemblyReference>System.ValueTuple</AssemblyReference>
+      <AssemblyReference>UiPath.Excel</AssemblyReference>
+      <AssemblyReference>UiPath.Mail</AssemblyReference>
+      <AssemblyReference>UiPath.CV</AssemblyReference>
+      <AssemblyReference>System.ServiceModel</AssemblyReference>
+      <AssemblyReference>UiPath.Word</AssemblyReference>
+    </scg:List>
+  </TextExpression.ReferencesForImplementation>
+  <Sequence DisplayName="SAP_Trigger" sap:VirtualizedContainerService.HintSize="1206,7625" sap2010:WorkflowViewState.IdRef="Sequence_1">
+    <Sequence.Variables>
+      <Variable x:TypeArguments="ss:SecureString" Name="benutzer" />
+      <Variable x:TypeArguments="ss:SecureString" Name="password" />
+      <Variable x:TypeArguments="x:String" Name="elfer_aus_cronet" />
+      <Variable x:TypeArguments="x:String" Name="zehner" />
+      <Variable x:TypeArguments="ui:GenericValue" Name="TextfieldDaten" />
+      <Variable x:TypeArguments="x:String" Default="[auftrag]" Name="auftrnr" />
+      <Variable x:TypeArguments="x:String" Name="mengez" />
+      <Variable x:TypeArguments="x:String" Name="mengeauftr" />
+      <Variable x:TypeArguments="x:String" Name="mengeelf1" />
+      <Variable x:TypeArguments="x:String" Name="mengeeif2" />
+      <Variable x:TypeArguments="x:String" Name="elfer2" />
+      <Variable x:TypeArguments="x:String" Name="elfer1" />
+      <Variable x:TypeArguments="ui:GenericValue" Name="UserareaUsr" />
+      <Variable x:TypeArguments="x:Int32" Name="matnr" />
+      <Variable x:TypeArguments="x:Int32" Name="matnralt" />
+      <Variable x:TypeArguments="x:String" Name="menge" />
+      <Variable x:TypeArguments="x:String" Name="mengealt" />
+      <Variable x:TypeArguments="x:Boolean" Name="wahr" />
+      <Variable x:TypeArguments="x:Int32" Name="zaehler" />
+      <Variable x:TypeArguments="x:String" Name="splateMat" />
+      <Variable x:TypeArguments="x:String" Name="spaltebed" />
+      <Variable x:TypeArguments="x:String" Name="liste" />
+      <Variable x:TypeArguments="x:String" Name="senden" />
+    </Sequence.Variables>
+    <sap:WorkflowViewStateService.ViewState>
+      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+      </scg:Dictionary>
+    </sap:WorkflowViewStateService.ViewState>
+    <Sequence sap2010:Annotation.AnnotationText="Anmelden in SAP mit gesichertem Bentuzer und Passwort" DisplayName="SAP Anmeldung" sap:VirtualizedContainerService.HintSize="1164,1379" sap2010:WorkflowViewState.IdRef="Sequence_3">
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+      <ui:CustomInput Height="{x:Null}" Width="{x:Null}" DisplayName="Custom Input" sap:VirtualizedContainerService.HintSize="334,86" sap2010:WorkflowViewState.IdRef="CustomInput_1" Result="[senden]" URI="eingabe_Mat.html" />
+      <Assign sap:VirtualizedContainerService.HintSize="334,60" sap2010:WorkflowViewState.IdRef="Assign_12">
+        <Assign.To>
+          <OutArgument x:TypeArguments="x:String">[elfer_aus_cronet]</OutArgument>
+        </Assign.To>
+        <Assign.Value>
+          <InArgument x:TypeArguments="x:String">[senden]</InArgument>
+        </Assign.Value>
+      </Assign>
+      <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="334,91" sap2010:WorkflowViewState.IdRef="LogMessage_2" Level="Info" Message="[elfer_aus_cronet]" />
+      <ui:StartProcess Arguments="{x:Null}" WorkingDirectory="{x:Null}" DisplayName="Start Process-SAP starten" FileName="C:\Program Files (x86)\SAP\FrontEnd\SAPgui\saplogon.exe" sap:VirtualizedContainerService.HintSize="334,87" sap2010:WorkflowViewState.IdRef="StartProcess_1" />
+      <ui:Click AlterIfDisabled="{x:Null}" DelayMS="{x:Null}" ClickType="CLICK_DOUBLE" DelayBefore="4000" DisplayName="Click 'list item  MIQ'-Testsystem öffnen" sap:VirtualizedContainerService.HintSize="334,106" sap2010:WorkflowViewState.IdRef="Click_1" KeyModifiers="None" MouseButton="BTN_LEFT" SendWindowMessages="False" SimulateClick="False">
+        <ui:Click.CursorPosition>
+          <ui:CursorPosition OffsetX="104" OffsetY="12" Position="TopLeft" />
+        </ui:Click.CursorPosition>
+        <ui:Click.Target>
+          <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="21b864ed-0342-4722-9068-25cc46f67fe2" InformativeScreenshot="1b1485da31dcdebfece235a5e1b858fe" Selector="&lt;wnd app='saplogon.exe' cls='#32770' title='SAP Logon 740' /&gt;&lt;wnd ctrlid='5002' title='myContainer' /&gt;&lt;wnd ctrlid='1008' /&gt;&lt;ctrl name='MIQ' role='list item' /&gt;">
+            <ui:Target.TimeoutMS>
+              <InArgument x:TypeArguments="x:Int32" />
+            </ui:Target.TimeoutMS>
+            <ui:Target.WaitForReady>
+              <InArgument x:TypeArguments="ui:WaitForReady" />
+            </ui:Target.WaitForReady>
+          </ui:Target>
+        </ui:Click.Target>
+      </ui:Click>
+      <Assign DisplayName="Assign-Variable für Benutzer" sap:VirtualizedContainerService.HintSize="334,60" sap2010:WorkflowViewState.IdRef="Assign_1">
+        <Assign.To>
+          <OutArgument x:TypeArguments="ss:SecureString">[benutzer]</OutArgument>
+        </Assign.To>
+        <Assign.Value>
+          <InArgument x:TypeArguments="ss:SecureString">[New System.Net.NetworkCredential(String.Empty,"deutschha").SecurePassword]</InArgument>
+        </Assign.Value>
+      </Assign>
+      <Assign DisplayName="Assign-Variable für Passwort" sap:VirtualizedContainerService.HintSize="334,60" sap2010:WorkflowViewState.IdRef="Assign_2">
+        <Assign.To>
+          <OutArgument x:TypeArguments="ss:SecureString">[password]</OutArgument>
+        </Assign.To>
+        <Assign.Value>
+          <InArgument x:TypeArguments="ss:SecureString">[New System.Net.NetworkCredential(String.Empty,"Har-!973").SecurePassword]</InArgument>
+        </Assign.Value>
+      </Assign>
+      <ui:TypeSecureText AlterIfDisabled="{x:Null}" ClickBeforeTyping="{x:Null}" DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" EmptyField="{x:Null}" SendWindowMessages="{x:Null}" SimulateType="{x:Null}" Activate="True" DisplayName="Type Secure Text 'TextField  Benutzer eintragen" sap:VirtualizedContainerService.HintSize="334,106" sap2010:WorkflowViewState.IdRef="TypeSecureText_1" SecureText="[benutzer]">
+        <ui:TypeSecureText.Target>
+          <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="7651725e-2b18-47c0-9cc2-d77970e1cc78" InformativeScreenshot="290a235537a4fc93d92ceca4ffef4d54" Selector="&lt;wnd app='saplogon.exe' cls='SAP_FRONTEND_SESSION' title='MIQ(1)/000 SAP' /&gt;&lt;sap id='usr/txtRSYST-BNAME' /&gt;">
+            <ui:Target.TimeoutMS>
+              <InArgument x:TypeArguments="x:Int32" />
+            </ui:Target.TimeoutMS>
+            <ui:Target.WaitForReady>
+              <InArgument x:TypeArguments="ui:WaitForReady" />
+            </ui:Target.WaitForReady>
+          </ui:Target>
+        </ui:TypeSecureText.Target>
+      </ui:TypeSecureText>
+      <ui:TypeSecureText AlterIfDisabled="{x:Null}" ClickBeforeTyping="{x:Null}" DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" EmptyField="{x:Null}" SendWindowMessages="{x:Null}" SimulateType="{x:Null}" Activate="True" DisplayName="Type Secure Text Passwort eintragen" sap:VirtualizedContainerService.HintSize="334,106" sap2010:WorkflowViewState.IdRef="TypeSecureText_2" SecureText="[password]">
+        <ui:TypeSecureText.Target>
+          <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="7d879a3f-11ec-481e-a7ef-07244ea7e875" InformativeScreenshot="d9da3fa253d9e44664e0f58ad4e110a4" Selector="&lt;wnd app='saplogon.exe' cls='SAP_FRONTEND_SESSION' title='MIQ(1)/000 SAP' /&gt;&lt;sap id='usr/pwdRSYST-BCODE' /&gt;">
+            <ui:Target.TimeoutMS>
+              <InArgument x:TypeArguments="x:Int32" />
+            </ui:Target.TimeoutMS>
+            <ui:Target.WaitForReady>
+              <InArgument x:TypeArguments="ui:WaitForReady" />
+            </ui:Target.WaitForReady>
+          </ui:Target>
+        </ui:TypeSecureText.Target>
+      </ui:TypeSecureText>
+      <ui:TypeInto AlterIfDisabled="{x:Null}" ClickBeforeTyping="{x:Null}" DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" EmptyField="{x:Null}" SendWindowMessages="{x:Null}" SimulateType="{x:Null}" Activate="True" DisplayName="Enter eingeben" sap:VirtualizedContainerService.HintSize="334,134" sap2010:WorkflowViewState.IdRef="TypeInto_1" Text="%[k(enter)]">
+        <ui:TypeInto.Target>
+          <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="d3bbc658-9cae-47e4-8ce9-bcd687f52f52" InformativeScreenshot="056fcd0ecc1a1a731c329ce471a89aff" Selector="&lt;wnd app='saplogon.exe' cls='SAP_FRONTEND_SESSION' title='MIQ(1)/000 SAP' /&gt;&lt;sap id='usr/pwdRSYST-BCODE' /&gt;">
+            <ui:Target.TimeoutMS>
+              <InArgument x:TypeArguments="x:Int32" />
+            </ui:Target.TimeoutMS>
+            <ui:Target.WaitForReady>
+              <InArgument x:TypeArguments="ui:WaitForReady" />
+            </ui:Target.WaitForReady>
+          </ui:Target>
+        </ui:TypeInto.Target>
+      </ui:TypeInto>
+    </Sequence>
+    <Sequence DisplayName="SAP MD04 Bestandliste" sap:VirtualizedContainerService.HintSize="1164,6013" sap2010:WorkflowViewState.IdRef="Sequence_5">
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+      <ui:TypeInto AlterIfDisabled="{x:Null}" ClickBeforeTyping="{x:Null}" DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" Activate="True" DisplayName="Type Into - MD04 in Suchfeld eingeben" EmptyField="False" sap:VirtualizedContainerService.HintSize="1122,134" sap2010:WorkflowViewState.IdRef="TypeInto_2" SendWindowMessages="False" SimulateType="False" Text="MD04[k(enter)]">
+        <ui:TypeInto.Target>
+          <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="1add8c9a-9fd0-45a4-82ac-ecfd8deaf30c" InformativeScreenshot="5ee3f3c1298dee0e0cdbb0033d1eddb6" Selector="&lt;wnd app='saplogon.exe' cls='SAP_FRONTEND_SESSION' title='MIQ(1)/100 SAP Easy Access  MIBA logistics menu' /&gt;&lt;sap id='tbar[0]/okcd' /&gt;">
+            <ui:Target.TimeoutMS>
+              <InArgument x:TypeArguments="x:Int32" />
+            </ui:Target.TimeoutMS>
+            <ui:Target.WaitForReady>
+              <InArgument x:TypeArguments="ui:WaitForReady" />
+            </ui:Target.WaitForReady>
+          </ui:Target>
+        </ui:TypeInto.Target>
+      </ui:TypeInto>
+      <ui:TypeInto AlterIfDisabled="{x:Null}" ClickBeforeTyping="{x:Null}" DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" SimulateType="{x:Null}" Activate="True" DisplayName="Type Into 11er Nummer eintragen in Feld Material" EmptyField="True" sap:VirtualizedContainerService.HintSize="1122,134" sap2010:WorkflowViewState.IdRef="TypeInto_3" Text="[elfer_aus_cronet+ &quot;[k(enter)]&quot;]">
+        <ui:TypeInto.Target>
+          <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="ee14533f-a9f3-4163-b53a-f81c3bc819c9" InformativeScreenshot="ae4db2fa9466920cab9890237bb09830" Selector="&lt;wnd app='saplogon.exe' cls='SAP_FRONTEND_SESSION' title='MIQ(1)/100 Aktuelle Bedarfs-/Bestandsliste: Einstieg' /&gt;&lt;sap id='usr/tabsTAB300/tabpF01/ssubINCLUDE300:SAPMM61R:0301/ctxtRM61R-MATNR' /&gt;">
+            <ui:Target.TimeoutMS>
+              <InArgument x:TypeArguments="x:Int32" />
+            </ui:Target.TimeoutMS>
+            <ui:Target.WaitForReady>
+              <InArgument x:TypeArguments="ui:WaitForReady" />
+            </ui:Target.WaitForReady>
+          </ui:Target>
+        </ui:TypeInto.Target>
+      </ui:TypeInto>
+      <Sequence DisplayName="MD04 Bedarf -Bestandsliste" sap:VirtualizedContainerService.HintSize="1122,5573" sap2010:WorkflowViewState.IdRef="Sequence_8">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+        <ui:GetValue ContinueOnError="{x:Null}" DisplayName="Get Text  10er Nummer suchen" sap:VirtualizedContainerService.HintSize="1080,106" sap2010:WorkflowViewState.IdRef="GetValue_1">
+          <ui:GetValue.Target>
+            <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="9f0815f0-19d5-4a4e-a250-883e07f2f579" InformativeScreenshot="c095923b6896666e3ac23239a2e35a67" Selector="&lt;wnd app='saplogon.exe' cls='SAP_FRONTEND_SESSION' title='MIQ(1)/100 Bedarfs-/Bestandsliste von *' /&gt;&lt;sap id='usr/subINCLUDE1XX:SAPMM61R:0750/tblSAPMM61RTC_EZ' tableCol='5' tableRow='2' /&gt;">
+              <ui:Target.TimeoutMS>
+                <InArgument x:TypeArguments="x:Int32" />
+              </ui:Target.TimeoutMS>
+              <ui:Target.WaitForReady>
+                <InArgument x:TypeArguments="ui:WaitForReady" />
+              </ui:Target.WaitForReady>
+            </ui:Target>
+          </ui:GetValue.Target>
+          <ui:GetValue.Value>
+            <OutArgument x:TypeArguments="ui:GenericValue">[TextfieldDaten]</OutArgument>
+          </ui:GetValue.Value>
+        </ui:GetValue>
+        <If Condition="[Left(TextfieldDaten.ToString,2) = &quot;10&quot;]" DisplayName="If - Wenn 10er gefunden dann..." sap:VirtualizedContainerService.HintSize="1080,300" sap2010:WorkflowViewState.IdRef="If_2">
+          <If.Then>
+            <Sequence sap:VirtualizedContainerService.HintSize="304,152" sap2010:WorkflowViewState.IdRef="Sequence_9">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+              <Assign DisplayName="Assign 10 er Nummer " sap:VirtualizedContainerService.HintSize="262,60" sap2010:WorkflowViewState.IdRef="Assign_3">
+                <Assign.To>
+                  <OutArgument x:TypeArguments="x:String">[zehner]</OutArgument>
+                </Assign.To>
+                <Assign.Value>
+                  <InArgument x:TypeArguments="x:String">[TextfieldDaten.ToString]</InArgument>
+                </Assign.Value>
+              </Assign>
+            </Sequence>
+          </If.Then>
+          <If.Else>
+            <ui:MessageBox Caption="{x:Null}" ChosenButton="{x:Null}" DisplayName="Message Box" sap:VirtualizedContainerService.HintSize="334,59" sap2010:WorkflowViewState.IdRef="MessageBox_5" Text="[&quot;keine Übereinstimmung&quot;]" />
+          </If.Else>
+        </If>
+        <ui:TypeInto AlterIfDisabled="{x:Null}" ClickBeforeTyping="{x:Null}" DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" SimulateType="{x:Null}" Activate="True" DisplayName="Type Into 10er Nummer eingeben" EmptyField="True" sap:VirtualizedContainerService.HintSize="1080,134" sap2010:WorkflowViewState.IdRef="TypeInto_4" Text="[zehner+ &quot;[k(enter)]&quot;]">
+          <ui:TypeInto.Target>
+            <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="d94603b5-6471-473a-9842-e46c611f55c9" InformativeScreenshot="9427343d9fe1961702121dc2e77470a9" Selector="&lt;wnd app='saplogon.exe' cls='SAP_FRONTEND_SESSION' title='MIQ(1)/100 Bedarfs-/Bestandsliste*' /&gt;&lt;sap id='usr/subINCLUDE8XX:SAPMM61R:0800/ctxtRM61R-MATNR' /&gt;">
+              <ui:Target.TimeoutMS>
+                <InArgument x:TypeArguments="x:Int32" />
+              </ui:Target.TimeoutMS>
+              <ui:Target.WaitForReady>
+                <InArgument x:TypeArguments="ui:WaitForReady" />
+              </ui:Target.WaitForReady>
+            </ui:Target>
+          </ui:TypeInto.Target>
+        </ui:TypeInto>
+        <ui:Click AlterIfDisabled="{x:Null}" DelayBefore="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" SimulateClick="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click 'Button Auftragsbericht'" sap:VirtualizedContainerService.HintSize="1080,106" sap2010:WorkflowViewState.IdRef="Click_2" KeyModifiers="None" MouseButton="BTN_LEFT">
+          <ui:Click.CursorPosition>
+            <ui:CursorPosition Position="Center">
+              <ui:CursorPosition.OffsetX>
+                <InArgument x:TypeArguments="x:Int32" />
+              </ui:CursorPosition.OffsetX>
+              <ui:CursorPosition.OffsetY>
+                <InArgument x:TypeArguments="x:Int32" />
+              </ui:CursorPosition.OffsetY>
+            </ui:CursorPosition>
+          </ui:Click.CursorPosition>
+          <ui:Click.Target>
+            <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="d7643945-e01a-4b68-be19-35f82301248d" InformativeScreenshot="e9060cba95beaed29fe50a5566a24808" Selector="&lt;wnd app='saplogon.exe' cls='SAP_FRONTEND_SESSION' title='MIQ(1)/100 Bedarfs-/Bestandsliste *' /&gt;&lt;sap id='usr/subINCLUDE1XX:SAPMM61R:0750/btnICON_STRP' /&gt;">
+              <ui:Target.TimeoutMS>
+                <InArgument x:TypeArguments="x:Int32" />
+              </ui:Target.TimeoutMS>
+              <ui:Target.WaitForReady>
+                <InArgument x:TypeArguments="ui:WaitForReady" />
+              </ui:Target.WaitForReady>
+            </ui:Target>
+          </ui:Click.Target>
+        </ui:Click>
+        <ui:UiElementExists DisplayName="Statusabfrage vorhanden ?" Exists="[wahr]" sap:VirtualizedContainerService.HintSize="1080,106" sap2010:WorkflowViewState.IdRef="UiElementExists_1">
+          <ui:UiElementExists.Target>
+            <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="aa973c5e-50e2-43b6-8de8-b7031c7e4e63" InformativeScreenshot="46ef546c731ba58ffea010b750c473b8" Selector="&lt;wnd app='saplogon.exe' cls='#32770' title='MIQ(1)/100 Information' idx='*' /&gt;">
+              <ui:Target.TimeoutMS>
+                <InArgument x:TypeArguments="x:Int32" />
+              </ui:Target.TimeoutMS>
+              <ui:Target.WaitForReady>
+                <InArgument x:TypeArguments="ui:WaitForReady" />
+              </ui:Target.WaitForReady>
+            </ui:Target>
+          </ui:UiElementExists.Target>
+        </ui:UiElementExists>
+        <If Condition="[wahr = True]" DisplayName="Wenn ja dann bestätigen " sap:VirtualizedContainerService.HintSize="1080,282" sap2010:WorkflowViewState.IdRef="If_3">
+          <If.Then>
+            <ui:TypeInto AlterIfDisabled="{x:Null}" ClickBeforeTyping="{x:Null}" DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" EmptyField="{x:Null}" SendWindowMessages="{x:Null}" SimulateType="{x:Null}" Activate="True" DisplayName="Type Into 'Button  Weiter (Enter)'" sap:VirtualizedContainerService.HintSize="334,134" sap2010:WorkflowViewState.IdRef="TypeInto_5" Text="%[k(enter)]">
+              <ui:TypeInto.Target>
+                <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="43bf9584-a686-4332-81c5-69537e5f5506" InformativeScreenshot="188fb0dd813b0b875d141cd5a5a3cfa7" Selector="&lt;wnd app='saplogon.exe' cls='#32770' title='MIQ(1)/100 Information' idx='*' /&gt;&lt;sap id='tbar[0]/btn[0]' /&gt;">
+                  <ui:Target.TimeoutMS>
+                    <InArgument x:TypeArguments="x:Int32" />
+                  </ui:Target.TimeoutMS>
+                  <ui:Target.WaitForReady>
+                    <InArgument x:TypeArguments="ui:WaitForReady" />
+                  </ui:Target.WaitForReady>
+                </ui:Target>
+              </ui:TypeInto.Target>
+            </ui:TypeInto>
+          </If.Then>
+        </If>
+        <ui:Click AlterIfDisabled="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" SimulateClick="{x:Null}" ClickType="CLICK_DOUBLE" DelayBefore="2000" DisplayName="Auftragsnummer im Baum anwählen" sap:VirtualizedContainerService.HintSize="1080,106" sap2010:WorkflowViewState.IdRef="Click_5" KeyModifiers="None" MouseButton="BTN_LEFT">
+          <ui:Click.CursorPosition>
+            <ui:CursorPosition Position="Center">
+              <ui:CursorPosition.OffsetX>
+                <InArgument x:TypeArguments="x:Int32" />
+              </ui:CursorPosition.OffsetX>
+              <ui:CursorPosition.OffsetY>
+                <InArgument x:TypeArguments="x:Int32" />
+              </ui:CursorPosition.OffsetY>
+            </ui:CursorPosition>
+          </ui:Click.CursorPosition>
+          <ui:Click.Target>
+            <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="b3104424-f31d-4090-8092-e0c3acfa2e5d" InformativeScreenshot="aba1a0e13522fc52ceeb3b1463798a3f" Selector="&lt;wnd app='saplogon.exe' cls='SAP_FRONTEND_SESSION' title='MIQ(1)/100 Bedarfs-/Bestandsliste*' /&gt;&lt;sap id='shellcont/shell/shellcont[1]/shell/shellcont[1]/shell[1]' relpath='*' /&gt;">
+              <ui:Target.TimeoutMS>
+                <InArgument x:TypeArguments="x:Int32" />
+              </ui:Target.TimeoutMS>
+              <ui:Target.WaitForReady>
+                <InArgument x:TypeArguments="ui:WaitForReady" />
+              </ui:Target.WaitForReady>
+            </ui:Target>
+          </ui:Click.Target>
+        </ui:Click>
+        <ui:GetValue ContinueOnError="{x:Null}" DisplayName="Auftragsnummer in VAr einlesen" sap:VirtualizedContainerService.HintSize="1080,106" sap2010:WorkflowViewState.IdRef="GetValue_2">
+          <ui:GetValue.Target>
+            <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="478d0390-612c-4351-b076-856fc8bf2148" InformativeScreenshot="aba1a0e13522fc52ceeb3b1463798a3f" Selector="&lt;wnd app='saplogon.exe' cls='SAP_FRONTEND_SESSION' title='MIQ(1)/100 Bedarfs-/Bestandsliste*' /&gt;&lt;sap id='shellcont/shell/shellcont[1]/shell/shellcont[1]/shell[1]' relpath='*' /&gt;&lt;sap itemId='&amp;amp;Hierarchy' /&gt;">
+              <ui:Target.TimeoutMS>
+                <InArgument x:TypeArguments="x:Int32" />
+              </ui:Target.TimeoutMS>
+              <ui:Target.WaitForReady>
+                <InArgument x:TypeArguments="ui:WaitForReady" />
+              </ui:Target.WaitForReady>
+            </ui:Target>
+          </ui:GetValue.Target>
+          <ui:GetValue.Value>
+            <OutArgument x:TypeArguments="x:String">[auftrnr]</OutArgument>
+          </ui:GetValue.Value>
+        </ui:GetValue>
+        <If Condition="[auftrnr.Contains(&quot;002300&quot;)]" DisplayName="Wenn Auftragsnummer vorhanden dann ....." sap:VirtualizedContainerService.HintSize="1080,445" sap2010:WorkflowViewState.IdRef="If_4">
+          <If.Then>
+            <ui:GetValue ContinueOnError="{x:Null}" DisplayName="Verfügbare Menge in Varaible Speichern" sap:VirtualizedContainerService.HintSize="334,106" sap2010:WorkflowViewState.IdRef="GetValue_3">
+              <ui:GetValue.Target>
+                <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="8cb25673-d0ec-482b-ae95-b87964c33613" InformativeScreenshot="6dcbe3617cd38d474e433998e47a23e5" Selector="&lt;wnd app='saplogon.exe' cls='SAP_FRONTEND_SESSION' title='MIQ(1)/100 Bedarfs-/Bestandsliste*' /&gt;&lt;sap id='usr/subINCLUDE1XX:SAPMM61R:0750/tblSAPMM61RTC_EZ' tableCol='9' tableRow='0' /&gt;">
+                  <ui:Target.TimeoutMS>
+                    <InArgument x:TypeArguments="x:Int32" />
+                  </ui:Target.TimeoutMS>
+                  <ui:Target.WaitForReady>
+                    <InArgument x:TypeArguments="ui:WaitForReady" />
+                  </ui:Target.WaitForReady>
+                </ui:Target>
+              </ui:GetValue.Target>
+              <ui:GetValue.Value>
+                <OutArgument x:TypeArguments="x:String">[mengeauftr]</OutArgument>
+              </ui:GetValue.Value>
+            </ui:GetValue>
+          </If.Then>
+          <If.Else>
+            <Sequence DisplayName="Sonst" sap:VirtualizedContainerService.HintSize="376,297" sap2010:WorkflowViewState.IdRef="Sequence_11">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+              <ui:MessageBox Caption="{x:Null}" ChosenButton="{x:Null}" DisplayName="Message Box ausgeben" sap:VirtualizedContainerService.HintSize="334,59" sap2010:WorkflowViewState.IdRef="MessageBox_6" Text="[&quot;Kein Auftag angelegt!&quot;]" />
+              <ui:CloseApplication DisplayName="SAP beeenden" sap:VirtualizedContainerService.HintSize="334,106" sap2010:WorkflowViewState.IdRef="CloseApplication_1">
+                <ui:CloseApplication.Target>
+                  <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="40537130-a9c9-45cc-96b1-a7995006c3ef" InformativeScreenshot="0a752a22669b6333ff66607061d09cec" Selector="&lt;wnd app='saplogon.exe' cls='SAP_FRONTEND_SESSION' title='MIQ(1)/100 Bedarfs-/Bestandsliste*' /&gt;">
+                    <ui:Target.TimeoutMS>
+                      <InArgument x:TypeArguments="x:Int32" />
+                    </ui:Target.TimeoutMS>
+                    <ui:Target.WaitForReady>
+                      <InArgument x:TypeArguments="ui:WaitForReady" />
+                    </ui:Target.WaitForReady>
+                  </ui:Target>
+                </ui:CloseApplication.Target>
+              </ui:CloseApplication>
+            </Sequence>
+          </If.Else>
+        </If>
+        <ui:SelectItem AlterIfDisabled="{x:Null}" ContinueOnError="{x:Null}" DelayAfter="{x:Null}" DelayBefore="{x:Null}" DisplayName="Bestandslsite auswählen" sap:VirtualizedContainerService.HintSize="1080,134" sap2010:WorkflowViewState.IdRef="SelectItem_1" Item="Anzeige Bestand\/Bedarf Zuordnu">
+          <ui:SelectItem.Items>
+            <scg:List x:TypeArguments="x:String" Capacity="32">
+              <x:String>Arbeitsvorrat</x:String>
+              <x:String>Auftragsbericht</x:String>
+              <x:String>Auftragsbericht auffrischen</x:String>
+              <x:String>Expandieren bis Problem</x:String>
+              <x:String>Teilbaum expandieren</x:String>
+              <x:String>Teilbaum komprimieren</x:String>
+              <x:String>Suchen</x:String>
+              <x:String>Drucken der Ansicht</x:String>
+              <x:String>Drucken der Ansicht/Drucken der Ansicht</x:String>
+              <x:String>Drucken der Ansicht/Drucken der gesamten Hierarchie</x:String>
+              <x:String>Drucken der Ansicht/Druckvorschau der Ansicht</x:String>
+              <x:String>Drucken der Ansicht/Druckvorschau der gesamten Hierarchie</x:String>
+              <x:String>Layout auswählen...</x:String>
+              <x:String>Layout auswählen.../Layout auswählen...</x:String>
+              <x:String>Layout auswählen.../Layout ändern...</x:String>
+              <x:String>Layout auswählen.../Layout sichern...</x:String>
+              <x:String>Layout auswählen.../Layout verwalten...</x:String>
+              <x:String>Information Auftragsbericht</x:String>
+              <x:String>Baumposition wechseln</x:String>
+              <x:String>Anzeige Bestand\/Bedarf Zuordnu</x:String>
+            </scg:List>
+          </ui:SelectItem.Items>
+          <ui:SelectItem.Target>
+            <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="5175f3c2-84ad-42f4-a46d-451e79d81a66" InformativeScreenshot="486dd46319171edba8ecf98375f79b54" Selector="&lt;wnd app='saplogon.exe' cls='SAP_FRONTEND_SESSION' title='MIQ(1)/100 Bedarfs-/Bestandsliste*r' /&gt;&lt;sap id='shellcont/shell/shellcont[1]/shell/shellcont[1]/shell[0]' /&gt;">
+              <ui:Target.TimeoutMS>
+                <InArgument x:TypeArguments="x:Int32" />
+              </ui:Target.TimeoutMS>
+              <ui:Target.WaitForReady>
+                <InArgument x:TypeArguments="ui:WaitForReady" />
+              </ui:Target.WaitForReady>
+            </ui:Target>
+          </ui:SelectItem.Target>
+        </ui:SelectItem>
+        <Assign DisplayName="Variable für Schleifenzähler erstellen" sap:VirtualizedContainerService.HintSize="1080,60" sap2010:WorkflowViewState.IdRef="Assign_4">
+          <Assign.To>
+            <OutArgument x:TypeArguments="x:Int32">[zaehler]</OutArgument>
+          </Assign.To>
+          <Assign.Value>
+            <InArgument x:TypeArguments="x:Int32">0</InArgument>
+          </Assign.Value>
+        </Assign>
+        <Assign DisplayName="Variable für Materialnummer erstellen" sap:VirtualizedContainerService.HintSize="1080,60" sap2010:WorkflowViewState.IdRef="Assign_5">
+          <Assign.To>
+            <OutArgument x:TypeArguments="x:String">[splateMat]</OutArgument>
+          </Assign.To>
+          <Assign.Value>
+            <InArgument x:TypeArguments="x:String">MATNR</InArgument>
+          </Assign.Value>
+        </Assign>
+        <Assign DisplayName="Variable für Bestandsspalte erstellen" sap:VirtualizedContainerService.HintSize="1080,60" sap2010:WorkflowViewState.IdRef="Assign_6">
+          <Assign.To>
+            <OutArgument x:TypeArguments="x:String">[spaltebed]</OutArgument>
+          </Assign.To>
+          <Assign.Value>
+            <InArgument x:TypeArguments="x:String">MNG01</InArgument>
+          </Assign.Value>
+        </Assign>
+        <ui:InterruptibleWhile DisplayName="Solange bis ...." sap:VirtualizedContainerService.HintSize="1080,1049" sap2010:WorkflowViewState.IdRef="InterruptibleWhile_1">
+          <ui:InterruptibleWhile.Body>
+            <Sequence DisplayName="Body - Materialnummer kleiner 12 Tausend ....." sap:VirtualizedContainerService.HintSize="1044,884" sap2010:WorkflowViewState.IdRef="Sequence_14">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+              <ui:GetValue ContinueOnError="{x:Null}" DisplayName="Get Materialnummer lesen" sap:VirtualizedContainerService.HintSize="1002,106" sap2010:WorkflowViewState.IdRef="GetValue_7">
+                <ui:GetValue.Target>
+                  <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="175214bb-4db6-4271-a110-d05f63cb169b" InformativeScreenshot="b47c9495a3226f8a4ba6295abf11d5c3" Selector="&lt;wnd app='saplogon.exe' cls='#32770' title='MIQ(1)/100 Bestand/Bedarf Zuordnung' idx='*' /&gt;&lt;sap colName='MATNR' id='usr/cntlGRID1/shellcont/shell' tableRow='{{zaehler}}' /&gt;">
+                    <ui:Target.TimeoutMS>
+                      <InArgument x:TypeArguments="x:Int32" />
+                    </ui:Target.TimeoutMS>
+                    <ui:Target.WaitForReady>
+                      <InArgument x:TypeArguments="ui:WaitForReady" />
+                    </ui:Target.WaitForReady>
+                  </ui:Target>
+                </ui:GetValue.Target>
+                <ui:GetValue.Value>
+                  <OutArgument x:TypeArguments="x:Int32">[matnr]</OutArgument>
+                </ui:GetValue.Value>
+              </ui:GetValue>
+              <If Condition="[matnr &lt; 109999999]" DisplayName="Wenn ....Materailnummer kleiner 11 tausend" sap:VirtualizedContainerService.HintSize="1002,446" sap2010:WorkflowViewState.IdRef="If_6">
+                <If.Then>
+                  <Sequence DisplayName="dann" sap:VirtualizedContainerService.HintSize="304,152" sap2010:WorkflowViewState.IdRef="Sequence_20">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                    <Assign DisplayName="Variable Materialnummer zuweisen" sap:VirtualizedContainerService.HintSize="262,60" sap2010:WorkflowViewState.IdRef="Assign_8">
+                      <Assign.To>
+                        <OutArgument x:TypeArguments="x:String">[zehner]</OutArgument>
+                      </Assign.To>
+                      <Assign.Value>
+                        <InArgument x:TypeArguments="x:String">[matnr.ToString]</InArgument>
+                      </Assign.Value>
+                    </Assign>
+                  </Sequence>
+                </If.Then>
+                <If.Else>
+                  <If Condition="[elfer1 = &quot;&quot; And matnr &lt; 120000000]" DisplayName="Wenn ... Variable elfer1 leer und matnr kleiner 12 tausend ..." sap:VirtualizedContainerService.HintSize="653,299" sap2010:WorkflowViewState.IdRef="If_5">
+                    <If.Then>
+                      <Sequence DisplayName="dann" sap:VirtualizedContainerService.HintSize="304,152" sap2010:WorkflowViewState.IdRef="Sequence_21">
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                        <Assign DisplayName="Variable elfer1 - Materialnummer zuweisen" sap:VirtualizedContainerService.HintSize="262,60" sap2010:WorkflowViewState.IdRef="Assign_9">
+                          <Assign.To>
+                            <OutArgument x:TypeArguments="x:String">[elfer1]</OutArgument>
+                          </Assign.To>
+                          <Assign.Value>
+                            <InArgument x:TypeArguments="x:String">[matnr.ToString]</InArgument>
+                          </Assign.Value>
+                        </Assign>
+                      </Sequence>
+                    </If.Then>
+                    <If.Else>
+                      <Sequence sap:VirtualizedContainerService.HintSize="304,152" sap2010:WorkflowViewState.IdRef="Sequence_22">
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                        <Assign sap:VirtualizedContainerService.HintSize="262,60" sap2010:WorkflowViewState.IdRef="Assign_10">
+                          <Assign.To>
+                            <OutArgument x:TypeArguments="x:String">[elfer2]</OutArgument>
+                          </Assign.To>
+                          <Assign.Value>
+                            <InArgument x:TypeArguments="x:String">[matnralt.ToString]</InArgument>
+                          </Assign.Value>
+                        </Assign>
+                      </Sequence>
+                    </If.Else>
+                  </If>
+                </If.Else>
+              </If>
+              <Assign sap:VirtualizedContainerService.HintSize="1002,60" sap2010:WorkflowViewState.IdRef="Assign_11">
+                <Assign.To>
+                  <OutArgument x:TypeArguments="x:Int32">[matnralt]</OutArgument>
+                </Assign.To>
+                <Assign.Value>
+                  <InArgument x:TypeArguments="x:Int32">[matnr]</InArgument>
+                </Assign.Value>
+              </Assign>
+              <Assign sap:VirtualizedContainerService.HintSize="1002,60" sap2010:WorkflowViewState.IdRef="Assign_7">
+                <Assign.To>
+                  <OutArgument x:TypeArguments="x:Int32">[zaehler]</OutArgument>
+                </Assign.To>
+                <Assign.Value>
+                  <InArgument x:TypeArguments="x:Int32">[zaehler+1]</InArgument>
+                </Assign.Value>
+              </Assign>
+            </Sequence>
+          </ui:InterruptibleWhile.Body>
+          <ui:InterruptibleWhile.Condition>
+            <mva:VisualBasicValue x:TypeArguments="x:Boolean" ExpressionText="matnr &lt; 119999999" sap2010:WorkflowViewState.IdRef="VisualBasicValue`1_4" />
+          </ui:InterruptibleWhile.Condition>
+        </ui:InterruptibleWhile>
+        <ui:SendHotkey ClickBeforeTyping="{x:Null}" DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" EmptyField="{x:Null}" SendWindowMessages="{x:Null}" Activate="True" DisplayName="Send Hotkey 'saplogon.exe MIQ(1)/100'" sap:VirtualizedContainerService.HintSize="1080,154" sap2010:WorkflowViewState.IdRef="SendHotkey_1" Key="esc" KeyModifiers="None" SpecialKey="True">
+          <ui:SendHotkey.Target>
+            <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="c72a25d0-bec2-4d96-adc8-f345fb08cec9" InformativeScreenshot="bdaa3632b302329c5ea359833747a26f" Selector="&lt;wnd app='saplogon.exe' cls='#32770' title='MIQ(1)/100 Bestand/Bedarf Zuordnung' idx='*' /&gt;">
+              <ui:Target.TimeoutMS>
+                <InArgument x:TypeArguments="x:Int32" />
+              </ui:Target.TimeoutMS>
+              <ui:Target.WaitForReady>
+                <InArgument x:TypeArguments="ui:WaitForReady" />
+              </ui:Target.WaitForReady>
+            </ui:Target>
+          </ui:SendHotkey.Target>
+        </ui:SendHotkey>
+        <ui:TypeInto AlterIfDisabled="{x:Null}" ClickBeforeTyping="{x:Null}" DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" SimulateType="{x:Null}" Activate="True" DisplayName="Type Into Matnr 10er" EmptyField="True" sap:VirtualizedContainerService.HintSize="1080,134" sap2010:WorkflowViewState.IdRef="TypeInto_6" Text="[zehner+ &quot;[k(enter)]&quot;]">
+          <ui:TypeInto.Target>
+            <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="53665863-35f7-495e-81ef-d0e7e7f59b74" InformativeScreenshot="31665399b0ad0de1960d7b1dfdd9e51d" Selector="&lt;wnd app='saplogon.exe' cls='SAP_FRONTEND_SESSION' title='MIQ(1)/100 Bedarfs-/Bestandsliste*' /&gt;&lt;sap id='usr/subINCLUDE8XX:SAPMM61R:0800/ctxtRM61R-MATNR' /&gt;">
+              <ui:Target.TimeoutMS>
+                <InArgument x:TypeArguments="x:Int32" />
+              </ui:Target.TimeoutMS>
+              <ui:Target.WaitForReady>
+                <InArgument x:TypeArguments="ui:WaitForReady" />
+              </ui:Target.WaitForReady>
+            </ui:Target>
+          </ui:TypeInto.Target>
+        </ui:TypeInto>
+        <ui:GetValue ContinueOnError="{x:Null}" DisplayName="Get Text Verfügbare Menge lesen für 10er" sap:VirtualizedContainerService.HintSize="1080,106" sap2010:WorkflowViewState.IdRef="GetValue_10">
+          <ui:GetValue.Target>
+            <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="bae6caf7-9361-466a-bb0b-92f6ae5c06b9" InformativeScreenshot="6dcbe3617cd38d474e433998e47a23e5" Selector="&lt;wnd app='saplogon.exe' cls='SAP_FRONTEND_SESSION' title='MIQ(1)/100 Bedarfs-/Bestandsliste*' /&gt;&lt;sap id='usr/subINCLUDE1XX:SAPMM61R:0750/tblSAPMM61RTC_EZ' tableCol='9' tableRow='0' /&gt;">
+              <ui:Target.TimeoutMS>
+                <InArgument x:TypeArguments="x:Int32" />
+              </ui:Target.TimeoutMS>
+              <ui:Target.WaitForReady>
+                <InArgument x:TypeArguments="ui:WaitForReady" />
+              </ui:Target.WaitForReady>
+            </ui:Target>
+          </ui:GetValue.Target>
+          <ui:GetValue.Value>
+            <OutArgument x:TypeArguments="x:String">[mengez]</OutArgument>
+          </ui:GetValue.Value>
+        </ui:GetValue>
+        <ui:TypeInto AlterIfDisabled="{x:Null}" ClickBeforeTyping="{x:Null}" DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" SimulateType="{x:Null}" Activate="True" DisplayName="Type Into  erstes 11er" EmptyField="True" sap:VirtualizedContainerService.HintSize="1080,134" sap2010:WorkflowViewState.IdRef="TypeInto_7" Text="[elfer1+ &quot;[k(enter)]&quot;]">
+          <ui:TypeInto.Target>
+            <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="53665863-35f7-495e-81ef-d0e7e7f59b74" InformativeScreenshot="31665399b0ad0de1960d7b1dfdd9e51d" Selector="&lt;wnd app='saplogon.exe' cls='SAP_FRONTEND_SESSION' title='MIQ(1)/100 Bedarfs-/Bestandsliste*' /&gt;&lt;sap id='usr/subINCLUDE8XX:SAPMM61R:0800/ctxtRM61R-MATNR' /&gt;">
+              <ui:Target.TimeoutMS>
+                <InArgument x:TypeArguments="x:Int32" />
+              </ui:Target.TimeoutMS>
+              <ui:Target.WaitForReady>
+                <InArgument x:TypeArguments="ui:WaitForReady" />
+              </ui:Target.WaitForReady>
+            </ui:Target>
+          </ui:TypeInto.Target>
+        </ui:TypeInto>
+        <WriteLine DisplayName="Write Line" sap:VirtualizedContainerService.HintSize="1080,61" sap2010:WorkflowViewState.IdRef="WriteLine_2" Text="[out_11er1 + &quot; - &quot; + elfer1]" />
+        <ui:GetValue ContinueOnError="{x:Null}" DisplayName="Get Text Verfügbare Menge erstes 11er" sap:VirtualizedContainerService.HintSize="1080,106" sap2010:WorkflowViewState.IdRef="GetValue_11">
+          <ui:GetValue.Target>
+            <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="bae6caf7-9361-466a-bb0b-92f6ae5c06b9" InformativeScreenshot="6dcbe3617cd38d474e433998e47a23e5" Selector="&lt;wnd app='saplogon.exe' cls='SAP_FRONTEND_SESSION' title='MIQ(1)/100 Bedarfs-/Bestandsliste*' /&gt;&lt;sap id='usr/subINCLUDE1XX:SAPMM61R:0750/tblSAPMM61RTC_EZ' tableCol='9' tableRow='0' /&gt;">
+              <ui:Target.TimeoutMS>
+                <InArgument x:TypeArguments="x:Int32" />
+              </ui:Target.TimeoutMS>
+              <ui:Target.WaitForReady>
+                <InArgument x:TypeArguments="ui:WaitForReady" />
+              </ui:Target.WaitForReady>
+            </ui:Target>
+          </ui:GetValue.Target>
+          <ui:GetValue.Value>
+            <OutArgument x:TypeArguments="x:String">[mengeelf1]</OutArgument>
+          </ui:GetValue.Value>
+        </ui:GetValue>
+        <ui:TypeInto AlterIfDisabled="{x:Null}" ClickBeforeTyping="{x:Null}" DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" SimulateType="{x:Null}" Activate="True" DisplayName="Type Into zweites 11er" EmptyField="True" sap:VirtualizedContainerService.HintSize="1080,134" sap2010:WorkflowViewState.IdRef="TypeInto_8" Text="[elfer2+ &quot;[k(enter)]&quot;]">
+          <ui:TypeInto.Target>
+            <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="53665863-35f7-495e-81ef-d0e7e7f59b74" InformativeScreenshot="31665399b0ad0de1960d7b1dfdd9e51d" Selector="&lt;wnd app='saplogon.exe' cls='SAP_FRONTEND_SESSION' title='MIQ(1)/100 Bedarfs-/Bestandsliste*' /&gt;&lt;sap id='usr/subINCLUDE8XX:SAPMM61R:0800/ctxtRM61R-MATNR' /&gt;">
+              <ui:Target.TimeoutMS>
+                <InArgument x:TypeArguments="x:Int32" />
+              </ui:Target.TimeoutMS>
+              <ui:Target.WaitForReady>
+                <InArgument x:TypeArguments="ui:WaitForReady" />
+              </ui:Target.WaitForReady>
+            </ui:Target>
+          </ui:TypeInto.Target>
+        </ui:TypeInto>
+        <WriteLine DisplayName="Write Line" sap:VirtualizedContainerService.HintSize="1080,61" sap2010:WorkflowViewState.IdRef="WriteLine_3" Text="[out_11er2 + &quot; - &quot; + elfer2]" />
+        <ui:GetValue ContinueOnError="{x:Null}" DisplayName="Get Text Verfügbare menge für zweites 11er" sap:VirtualizedContainerService.HintSize="1080,106" sap2010:WorkflowViewState.IdRef="GetValue_12">
+          <ui:GetValue.Target>
+            <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="bae6caf7-9361-466a-bb0b-92f6ae5c06b9" InformativeScreenshot="6dcbe3617cd38d474e433998e47a23e5" Selector="&lt;wnd app='saplogon.exe' cls='SAP_FRONTEND_SESSION' title='MIQ(1)/100 Bedarfs-/Bestandsliste*' /&gt;&lt;sap id='usr/subINCLUDE1XX:SAPMM61R:0750/tblSAPMM61RTC_EZ' tableCol='9' tableRow='0' /&gt;">
+              <ui:Target.TimeoutMS>
+                <InArgument x:TypeArguments="x:Int32" />
+              </ui:Target.TimeoutMS>
+              <ui:Target.WaitForReady>
+                <InArgument x:TypeArguments="ui:WaitForReady" />
+              </ui:Target.WaitForReady>
+            </ui:Target>
+          </ui:GetValue.Target>
+          <ui:GetValue.Value>
+            <OutArgument x:TypeArguments="x:String">[mengeeif2]</OutArgument>
+          </ui:GetValue.Value>
+        </ui:GetValue>
+        <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="1080,91" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Info" Message="[&quot;Auftr:&quot;+ auftrnr + vbCrLf + &quot;Zehner&quot;+ zehner + &quot; Menge &quot;+ mengez + vbCrLf+&quot;Erster Elfer&quot;+ elfer1 + &quot;Menge&quot; +mengeelf1 + vbCrLf + &quot;zweiter elfer&quot; + elfer2 + &quot;Menge&quot; + mengeeif2]" />
+        <ui:MultipleAssign DisplayName="Multiple Assign" sap:VirtualizedContainerService.HintSize="1080,253" sap2010:WorkflowViewState.IdRef="MultipleAssign_1">
+          <ui:MultipleAssign.AssignOperations>
+            <scg:List x:TypeArguments="ui:AssignOperation" Capacity="8">
+              <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_1">
+                <ui:AssignOperation.To>
+                  <OutArgument x:TypeArguments="x:String">[out_10er]</OutArgument>
+                </ui:AssignOperation.To>
+                <ui:AssignOperation.Value>
+                  <InArgument x:TypeArguments="x:String">[zehner]</InArgument>
+                </ui:AssignOperation.Value>
+              </ui:AssignOperation>
+              <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_2">
+                <ui:AssignOperation.To>
+                  <OutArgument x:TypeArguments="x:String">[out_10erstk]</OutArgument>
+                </ui:AssignOperation.To>
+                <ui:AssignOperation.Value>
+                  <InArgument x:TypeArguments="x:String">[mengez]</InArgument>
+                </ui:AssignOperation.Value>
+              </ui:AssignOperation>
+              <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_3">
+                <ui:AssignOperation.To>
+                  <OutArgument x:TypeArguments="x:String">[out_11er1stk]</OutArgument>
+                </ui:AssignOperation.To>
+                <ui:AssignOperation.Value>
+                  <InArgument x:TypeArguments="x:String">[mengeelf1]</InArgument>
+                </ui:AssignOperation.Value>
+              </ui:AssignOperation>
+              <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_4">
+                <ui:AssignOperation.To>
+                  <OutArgument x:TypeArguments="x:String">[out_11er2]</OutArgument>
+                </ui:AssignOperation.To>
+                <ui:AssignOperation.Value>
+                  <InArgument x:TypeArguments="x:String">[mengeeif2]</InArgument>
+                </ui:AssignOperation.Value>
+              </ui:AssignOperation>
+              <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_5">
+                <ui:AssignOperation.To>
+                  <OutArgument x:TypeArguments="x:String">[out_11er1]</OutArgument>
+                </ui:AssignOperation.To>
+                <ui:AssignOperation.Value>
+                  <InArgument x:TypeArguments="x:String">[elfer1]</InArgument>
+                </ui:AssignOperation.Value>
+              </ui:AssignOperation>
+              <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_6">
+                <ui:AssignOperation.To>
+                  <OutArgument x:TypeArguments="x:String">[out_11er2]</OutArgument>
+                </ui:AssignOperation.To>
+                <ui:AssignOperation.Value>
+                  <InArgument x:TypeArguments="x:String">[elfer2]</InArgument>
+                </ui:AssignOperation.Value>
+              </ui:AssignOperation>
+            </scg:List>
+          </ui:MultipleAssign.AssignOperations>
+        </ui:MultipleAssign>
+        <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Invoke SAP_Logout workflow" sap:VirtualizedContainerService.HintSize="1080,87" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_3" UnSafe="False" WorkflowFileName="SAP_Logout.xaml">
+          <ui:InvokeWorkflowFile.Arguments>
+            <scg:Dictionary x:TypeArguments="x:String, Argument" />
+          </ui:InvokeWorkflowFile.Arguments>
+        </ui:InvokeWorkflowFile>
+      </Sequence>
+    </Sequence>
+    <WriteLine DisplayName="Write Line" sap:VirtualizedContainerService.HintSize="1164,61" sap2010:WorkflowViewState.IdRef="WriteLine_1" Text="[&quot;Die Ausgangsdaten&quot; +out_10er + out_11er1 + out_11er2]" />
+  </Sequence>
+</Activity>
