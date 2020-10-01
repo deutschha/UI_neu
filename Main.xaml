@@ -1,0 +1,197 @@
+<Activity mc:Ignorable="sap sap2010" x:Class="Main" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=mscorlib" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <x:Members>
+    <x:Property Name="in_auftr" Type="InArgument(x:String)" />
+  </x:Members>
+  <mva:VisualBasic.Settings>
+    <x:Null />
+  </mva:VisualBasic.Settings>
+  <sap:VirtualizedContainerService.HintSize>1100,2484</sap:VirtualizedContainerService.HintSize>
+  <sap2010:WorkflowViewState.IdRef>ActivityBuilder_1</sap2010:WorkflowViewState.IdRef>
+  <TextExpression.NamespacesForImplementation>
+    <sco:Collection x:TypeArguments="x:String">
+      <x:String>System.Activities</x:String>
+      <x:String>System.Activities.Statements</x:String>
+      <x:String>System.Activities.Expressions</x:String>
+      <x:String>System.Activities.Validation</x:String>
+      <x:String>System.Activities.XamlIntegration</x:String>
+      <x:String>Microsoft.VisualBasic</x:String>
+      <x:String>Microsoft.VisualBasic.Activities</x:String>
+      <x:String>System</x:String>
+      <x:String>System.Collections</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Data</x:String>
+      <x:String>System.Diagnostics</x:String>
+      <x:String>System.Drawing</x:String>
+      <x:String>System.IO</x:String>
+      <x:String>System.Linq</x:String>
+      <x:String>System.Net.Mail</x:String>
+      <x:String>System.Xml</x:String>
+      <x:String>System.Xml.Linq</x:String>
+      <x:String>UiPath.Core</x:String>
+      <x:String>UiPath.Core.Activities</x:String>
+      <x:String>System.Windows.Markup</x:String>
+      <x:String>UiPath.Excel</x:String>
+    </sco:Collection>
+  </TextExpression.NamespacesForImplementation>
+  <TextExpression.ReferencesForImplementation>
+    <sco:Collection x:TypeArguments="AssemblyReference">
+      <AssemblyReference>System.Activities</AssemblyReference>
+      <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
+      <AssemblyReference>mscorlib</AssemblyReference>
+      <AssemblyReference>System.Data</AssemblyReference>
+      <AssemblyReference>System</AssemblyReference>
+      <AssemblyReference>System.Drawing</AssemblyReference>
+      <AssemblyReference>System.Core</AssemblyReference>
+      <AssemblyReference>System.Xml</AssemblyReference>
+      <AssemblyReference>System.Xml.Linq</AssemblyReference>
+      <AssemblyReference>PresentationFramework</AssemblyReference>
+      <AssemblyReference>WindowsBase</AssemblyReference>
+      <AssemblyReference>PresentationCore</AssemblyReference>
+      <AssemblyReference>System.Xaml</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.UiAutomation.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Excel</AssemblyReference>
+      <AssemblyReference>UiPath.Excel.Activities</AssemblyReference>
+      <AssemblyReference>System.ValueTuple</AssemblyReference>
+      <AssemblyReference>System.ServiceModel</AssemblyReference>
+      <AssemblyReference>UiPath.CV</AssemblyReference>
+      <AssemblyReference>UiPath.Mail</AssemblyReference>
+      <AssemblyReference>UiPath.Word</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities.Design</AssemblyReference>
+    </sco:Collection>
+  </TextExpression.ReferencesForImplementation>
+  <Sequence sap:VirtualizedContainerService.HintSize="494,2319" sap2010:WorkflowViewState.IdRef="Sequence_2">
+    <Sequence.Variables>
+      <Variable x:TypeArguments="x:String" Default="[in_auftr]" Name="auftrnr" />
+      <Variable x:TypeArguments="x:String" Name="m_elfer1" />
+      <Variable x:TypeArguments="x:String" Name="m_elfer2" />
+      <Variable x:TypeArguments="x:String" Name="m_elfer1stk" />
+      <Variable x:TypeArguments="x:String" Name="m_elfer2stk" />
+      <Variable x:TypeArguments="x:String" Name="m_zehner" />
+      <Variable x:TypeArguments="x:String" Name="m_zehnerstk" />
+      <Variable x:TypeArguments="x:String" Name="variable1" />
+    </Sequence.Variables>
+    <sap:WorkflowViewStateService.ViewState>
+      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+      </scg:Dictionary>
+    </sap:WorkflowViewStateService.ViewState>
+    <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Invoke SAP_Trigger workflow" sap:VirtualizedContainerService.HintSize="452,87" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_2" UnSafe="False" WorkflowFileName="SAP_Trigger.xaml">
+      <ui:InvokeWorkflowFile.Arguments>
+        <InArgument x:TypeArguments="x:String" x:Key="in_auftrnr" />
+        <OutArgument x:TypeArguments="x:String" x:Key="out_10er">
+          <mva:VisualBasicReference x:TypeArguments="x:String" ExpressionText="m_zehner" />
+        </OutArgument>
+        <OutArgument x:TypeArguments="x:String" x:Key="out_10erstk">
+          <mva:VisualBasicReference x:TypeArguments="x:String" ExpressionText="m_zehnerstk" />
+        </OutArgument>
+        <OutArgument x:TypeArguments="x:String" x:Key="out_11er1">
+          <mva:VisualBasicReference x:TypeArguments="x:String" ExpressionText="m_elfer1" />
+        </OutArgument>
+        <OutArgument x:TypeArguments="x:String" x:Key="out_11er1stk">
+          <mva:VisualBasicReference x:TypeArguments="x:String" ExpressionText="m_elfer1stk" />
+        </OutArgument>
+        <OutArgument x:TypeArguments="x:String" x:Key="out_11er2">
+          <mva:VisualBasicReference x:TypeArguments="x:String" ExpressionText="m_elfer2" />
+        </OutArgument>
+        <OutArgument x:TypeArguments="x:String" x:Key="out_11er2stk">
+          <mva:VisualBasicReference x:TypeArguments="x:String" ExpressionText="m_elfer2stk" />
+        </OutArgument>
+        <OutArgument x:TypeArguments="x:String" x:Key="auftrag">
+          <mva:VisualBasicReference x:TypeArguments="x:String" ExpressionText="auftrnr" />
+        </OutArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="elfer" />
+      </ui:InvokeWorkflowFile.Arguments>
+    </ui:InvokeWorkflowFile>
+    <WriteLine DisplayName="Write Line" sap:VirtualizedContainerService.HintSize="452,61" sap2010:WorkflowViewState.IdRef="WriteLine_3" Text="[m_elfer2]" />
+    <WriteLine DisplayName="Write Line" sap:VirtualizedContainerService.HintSize="452,61" sap2010:WorkflowViewState.IdRef="WriteLine_2" Text="[m_zehner + m_elfer1 + m_elfer2]" />
+    <ui:WriteTextFile DisplayName="Write Text File" FileName="P:\deutschha\Gemitscht_neu.doc" sap:VirtualizedContainerService.HintSize="452,132" sap2010:WorkflowViewState.IdRef="WriteTextFile_1" Text="Test text 123" />
+    <ui:ExcelApplicationScope Password="{x:Null}" DisplayName="Excel Application Scope" sap:VirtualizedContainerService.HintSize="452,1726" sap2010:WorkflowViewState.IdRef="ExcelApplicationScope_1" WorkbookPath="P:\deutschha\Kopie von Vorlage_Übersicht_GP.xlsx">
+      <ui:ExcelApplicationScope.Body>
+        <ActivityAction x:TypeArguments="ui:WorkbookApplication">
+          <ActivityAction.Argument>
+            <DelegateInArgument x:TypeArguments="ui:WorkbookApplication" Name="ExcelWorkbookScope" />
+          </ActivityAction.Argument>
+          <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="418,1617" sap2010:WorkflowViewState.IdRef="Sequence_3">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+            <ui:ExcelWriteCell Cell="A6" DisplayName="Write Cell" sap:VirtualizedContainerService.HintSize="376,87" sap2010:WorkflowViewState.IdRef="ExcelWriteCell_1" SheetName="Vorlage Übersicht GP" Text="[m_zehner]" />
+            <ui:ExcelWriteCell Cell="D8" DisplayName="Write Cell" sap:VirtualizedContainerService.HintSize="376,87" sap2010:WorkflowViewState.IdRef="ExcelWriteCell_2" SheetName="Vorlage Übersicht GP" Text="[auftrnr]" />
+            <ui:ExcelWriteCell Cell="E8" DisplayName="Write Cell" sap:VirtualizedContainerService.HintSize="376,87" sap2010:WorkflowViewState.IdRef="ExcelWriteCell_3" SheetName="Vorlage Übersicht GP" Text="[m_zehnerstk]" />
+            <ui:ExcelWriteCell Cell="A16" DisplayName="Write Cell" sap:VirtualizedContainerService.HintSize="376,87" sap2010:WorkflowViewState.IdRef="ExcelWriteCell_4" SheetName="Vorlage Übersicht GP" Text="[m_elfer1]" />
+            <ui:ExcelWriteCell Cell="E18" DisplayName="Write Cell" sap:VirtualizedContainerService.HintSize="376,87" sap2010:WorkflowViewState.IdRef="ExcelWriteCell_5" SheetName="Vorlage Übersicht GP" Text="[m_elfer1stk]" />
+            <ui:ExcelWriteCell Cell="A26" DisplayName="Write Cell" sap:VirtualizedContainerService.HintSize="376,87" sap2010:WorkflowViewState.IdRef="ExcelWriteCell_6" SheetName="Vorlage Übersicht GP" Text="[m_elfer2]" />
+            <ui:ExcelWriteCell Cell="E28" DisplayName="Write Cell" sap:VirtualizedContainerService.HintSize="376,87" sap2010:WorkflowViewState.IdRef="ExcelWriteCell_7" SheetName="Vorlage Übersicht GP" Text="[m_elfer2stk]" />
+            <Sequence DisplayName="Basic" sap:VirtualizedContainerService.HintSize="376,636" sap2010:WorkflowViewState.IdRef="Sequence_4">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+              <ui:Click AlterIfDisabled="{x:Null}" DelayBefore="{x:Null}" DelayMS="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click 'Schaltfläche Registerka...'" sap:VirtualizedContainerService.HintSize="334,106" sap2010:WorkflowViewState.IdRef="Click_1" KeyModifiers="None" MouseButton="BTN_LEFT" SendWindowMessages="False" SimulateClick="False">
+                <ui:Click.CursorPosition>
+                  <ui:CursorPosition OffsetX="25" OffsetY="17" Position="TopLeft" />
+                </ui:Click.CursorPosition>
+                <ui:Click.Target>
+                  <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="96ffbb3f-0b4c-4bbf-9db8-e667a00794f2" InformativeScreenshot="9d9a0a4e8e542547e461268f18cf5506" Selector="&lt;wnd app='excel.exe' cls='XLMAIN' title='Kopie von Vorlage_Übersicht_*' /&gt;&#xD;&#xA;&lt;uia cls='MsoCommandBar' helpText='Symbolleiste für Ribbon' /&gt;&#xD;&#xA;&lt;uia automationid='FileTabButton' cls='NetUIRibbonTab' name='Registerkarte &amp;quot;Datei&amp;quot;' /&gt;&#xD;&#xA;">
+                    <ui:Target.TimeoutMS>
+                      <InArgument x:TypeArguments="x:Int32" />
+                    </ui:Target.TimeoutMS>
+                    <ui:Target.WaitForReady>
+                      <InArgument x:TypeArguments="ui:WaitForReady" />
+                    </ui:Target.WaitForReady>
+                  </ui:Target>
+                </ui:Click.Target>
+              </ui:Click>
+              <ui:Click AlterIfDisabled="{x:Null}" DelayBefore="{x:Null}" DelayMS="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click 'Listenelement  Drucken'" sap:VirtualizedContainerService.HintSize="334,106" sap2010:WorkflowViewState.IdRef="Click_2" KeyModifiers="None" MouseButton="BTN_LEFT" SendWindowMessages="False" SimulateClick="False">
+                <ui:Click.CursorPosition>
+                  <ui:CursorPosition OffsetX="62" OffsetY="23" Position="TopLeft" />
+                </ui:Click.CursorPosition>
+                <ui:Click.Target>
+                  <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="7cdbd431-dc04-4a42-8862-d8fe2b38d8c4" InformativeScreenshot="bbda998a0ee150aad86564648d7ecd05" Selector="&lt;wnd app='excel.exe' cls='XLMAIN' title='Kopie von Vorlage_Übersicht*.xlsx - *' /&gt;&#xD;&#xA;&lt;uia automationid='NavBarMenu' cls='NetUIKeyboardTabElement' name='Datei' /&gt;&#xD;&#xA;&lt;uia cls='NetUIRibbonTab' name='Drucken' /&gt;&#xD;&#xA;">
+                    <ui:Target.TimeoutMS>
+                      <InArgument x:TypeArguments="x:Int32" />
+                    </ui:Target.TimeoutMS>
+                    <ui:Target.WaitForReady>
+                      <InArgument x:TypeArguments="ui:WaitForReady" />
+                    </ui:Target.WaitForReady>
+                  </ui:Target>
+                </ui:Click.Target>
+              </ui:Click>
+              <ui:Click AlterIfDisabled="{x:Null}" DelayBefore="{x:Null}" DelayMS="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click 'Schaltfläche  Drucken'" sap:VirtualizedContainerService.HintSize="334,106" sap2010:WorkflowViewState.IdRef="Click_3" KeyModifiers="None" MouseButton="BTN_LEFT" SendWindowMessages="False" SimulateClick="False">
+                <ui:Click.CursorPosition>
+                  <ui:CursorPosition OffsetX="39" OffsetY="41" Position="TopLeft" />
+                </ui:Click.CursorPosition>
+                <ui:Click.Target>
+                  <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="375623b7-cf5b-469a-be61-8f3fb12d4bfe" InformativeScreenshot="815edb23fe2f9b92af7b552ceee763af" Selector="&lt;wnd app='excel.exe' cls='XLMAIN' title='Kopie von Vorlage_Übersicht*.xlsx - *' /&gt;&#xD;&#xA;&lt;uia cls='NetUIElement' name='Drucken' /&gt;&#xD;&#xA;&lt;uia cls='NetUISlabContainer' name='Drucken' /&gt;&#xD;&#xA;&lt;uia cls='NetUIStickyButton' name='Drucken' /&gt;&#xD;&#xA;">
+                    <ui:Target.TimeoutMS>
+                      <InArgument x:TypeArguments="x:Int32" />
+                    </ui:Target.TimeoutMS>
+                    <ui:Target.WaitForReady>
+                      <InArgument x:TypeArguments="ui:WaitForReady" />
+                    </ui:Target.WaitForReady>
+                  </ui:Target>
+                </ui:Click.Target>
+              </ui:Click>
+              <ui:CloseApplication DisplayName="Close Application 'Schaltfläche  Schließen'" sap:VirtualizedContainerService.HintSize="334,106" sap2010:WorkflowViewState.IdRef="CloseApplication_1">
+                <ui:CloseApplication.Target>
+                  <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="73f370f7-3c1c-41f0-a23d-19eb848d3876" InformativeScreenshot="fb261497e10f05dbe74ececbe28bd68a" Selector="&lt;wnd app='excel.exe' cls='XLMAIN' title='Kopie von Vorlage_Übersicht_GP.xlsx - Gespeichert' /&gt;&lt;uia cls='MsoCommandBar' helpText='Symbolleiste für Ribbon' /&gt;&lt;uia cls='NetUIAppFrameHelper' name='Schließen' /&gt;">
+                    <ui:Target.TimeoutMS>
+                      <InArgument x:TypeArguments="x:Int32" />
+                    </ui:Target.TimeoutMS>
+                    <ui:Target.WaitForReady>
+                      <InArgument x:TypeArguments="ui:WaitForReady" />
+                    </ui:Target.WaitForReady>
+                  </ui:Target>
+                </ui:CloseApplication.Target>
+              </ui:CloseApplication>
+            </Sequence>
+          </Sequence>
+        </ActivityAction>
+      </ui:ExcelApplicationScope.Body>
+    </ui:ExcelApplicationScope>
+  </Sequence>
+</Activity>
