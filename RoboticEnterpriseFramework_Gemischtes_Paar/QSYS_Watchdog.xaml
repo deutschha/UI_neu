@@ -1,0 +1,156 @@
+<Activity mc:Ignorable="sap sap2010" x:Class="QSYS_Watchdog" mva:VisualBasic.Settings="{x:Null}" sap:VirtualizedContainerService.HintSize="784,1230" sap2010:WorkflowViewState.IdRef="QSYS_Watchdog_1" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sd="clr-namespace:System.Drawing;assembly=System.Drawing" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <TextExpression.NamespacesForImplementation>
+    <scg:List x:TypeArguments="x:String" Capacity="30">
+      <x:String>System.Activities</x:String>
+      <x:String>System.Activities.Statements</x:String>
+      <x:String>System.Activities.Expressions</x:String>
+      <x:String>System.Activities.Validation</x:String>
+      <x:String>System.Activities.XamlIntegration</x:String>
+      <x:String>Microsoft.VisualBasic</x:String>
+      <x:String>Microsoft.VisualBasic.Activities</x:String>
+      <x:String>System</x:String>
+      <x:String>System.Collections</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Data</x:String>
+      <x:String>System.Diagnostics</x:String>
+      <x:String>System.Drawing</x:String>
+      <x:String>System.IO</x:String>
+      <x:String>System.Linq</x:String>
+      <x:String>System.Net.Mail</x:String>
+      <x:String>System.Xml</x:String>
+      <x:String>System.Xml.Linq</x:String>
+      <x:String>UiPath.Core</x:String>
+      <x:String>UiPath.Core.Activities</x:String>
+      <x:String>System.Windows.Markup</x:String>
+      <x:String>System.Collections.ObjectModel</x:String>
+      <x:String>System.Activities.DynamicUpdate</x:String>
+      <x:String>UiPath.Platform.ObjectLibrary</x:String>
+      <x:String>System.Runtime.Serialization</x:String>
+      <x:String>UiPath.Vision.OCR</x:String>
+      <x:String>UiPath.OCR.Contracts</x:String>
+      <x:String>System.Reflection</x:String>
+      <x:String>System.Runtime.InteropServices</x:String>
+      <x:String>UiPath.Core.Activities.OCR.Engines</x:String>
+    </scg:List>
+  </TextExpression.NamespacesForImplementation>
+  <TextExpression.ReferencesForImplementation>
+    <scg:List x:TypeArguments="AssemblyReference" Capacity="27">
+      <AssemblyReference>System.Activities</AssemblyReference>
+      <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
+      <AssemblyReference>mscorlib</AssemblyReference>
+      <AssemblyReference>System.Data</AssemblyReference>
+      <AssemblyReference>System.Data.DataSetExtensions</AssemblyReference>
+      <AssemblyReference>System</AssemblyReference>
+      <AssemblyReference>System.Drawing</AssemblyReference>
+      <AssemblyReference>System.Core</AssemblyReference>
+      <AssemblyReference>System.Xml</AssemblyReference>
+      <AssemblyReference>System.Xml.Linq</AssemblyReference>
+      <AssemblyReference>PresentationFramework</AssemblyReference>
+      <AssemblyReference>WindowsBase</AssemblyReference>
+      <AssemblyReference>PresentationCore</AssemblyReference>
+      <AssemblyReference>System.Xaml</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.UiAutomation.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Platform</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities.Design</AssemblyReference>
+      <AssemblyReference>System.ValueTuple</AssemblyReference>
+      <AssemblyReference>UiPath.Excel</AssemblyReference>
+      <AssemblyReference>UiPath.CV</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.Composition</AssemblyReference>
+      <AssemblyReference>System.ServiceModel</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization</AssemblyReference>
+      <AssemblyReference>UiPath.Vision.Core</AssemblyReference>
+      <AssemblyReference>UiPath.OCR.Contracts</AssemblyReference>
+      <AssemblyReference>System.Runtime.WindowsRuntime</AssemblyReference>
+    </scg:List>
+  </TextExpression.ReferencesForImplementation>
+  <Sequence DisplayName="QSYS_Watchdog" sap:VirtualizedContainerService.HintSize="594,1065" sap2010:WorkflowViewState.IdRef="Sequence_1">
+    <Sequence.Variables>
+      <Variable x:TypeArguments="x:String" Name="matnr" />
+      <Variable x:TypeArguments="ui:UiElement" Name="matnummer" />
+      <Variable x:TypeArguments="ui:Window" Name="matno" />
+    </Sequence.Variables>
+    <sap:WorkflowViewStateService.ViewState>
+      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+      </scg:Dictionary>
+    </sap:WorkflowViewStateService.ViewState>
+    <ui:MonitorEvents ContinueOnError="{x:Null}" DisplayName="Monitor Events" sap:VirtualizedContainerService.HintSize="552,973" sap2010:WorkflowViewState.IdRef="MonitorEvents_1">
+      <ui:MonitorEvents.Handler>
+        <ActivityAction x:TypeArguments="x:Object">
+          <ActivityAction.Argument>
+            <DelegateInArgument x:TypeArguments="x:Object" Name="args" />
+          </ActivityAction.Argument>
+          <Sequence DisplayName="Event Handler" sap:VirtualizedContainerService.HintSize="518,783" sap2010:WorkflowViewState.IdRef="Sequence_7">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+            <Delay Duration="00:00:02" sap:VirtualizedContainerService.HintSize="476,22" sap2010:WorkflowViewState.IdRef="Delay_1" />
+            <Sequence DisplayName="Native Citrix" sap:VirtualizedContainerService.HintSize="476,629" sap2010:WorkflowViewState.IdRef="Sequence_24">
+              <Sequence.Variables>
+                <Variable x:TypeArguments="ui:GenericValue" Name="WficaExeErfassung" />
+              </Sequence.Variables>
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+              <ui:WindowScope ApplicationWindow="{x:Null}" SearchScope="{x:Null}" TimeoutMS="{x:Null}" Window="{x:Null}" DisplayName="Attach Window 'Erfassung Transpare'" sap:VirtualizedContainerService.HintSize="434,537" sap2010:WorkflowViewState.IdRef="WindowScope_8" InformativeScreenshot="ba3db19a1e9444f87a783ba1e5291e46" Selector="&lt;wnd app='wfica32.exe' cls='Transparent Windows Client' title='Erfassung / Deutsch Harald - \\Remote' /&gt;">
+                <ui:WindowScope.Body>
+                  <ActivityAction x:TypeArguments="x:Object">
+                    <ActivityAction.Argument>
+                      <DelegateInArgument x:TypeArguments="x:Object" Name="ContextTarget" />
+                    </ActivityAction.Argument>
+                    <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="376,391" sap2010:WorkflowViewState.IdRef="Sequence_23">
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                      <ui:GetOCRText Text="{x:Null}" WordsInfo="{x:Null}" DisplayName="Get OCR Text 'wfica32.exe Erfassung'" sap:VirtualizedContainerService.HintSize="334,168" sap2010:WorkflowViewState.IdRef="GetOCRText_3">
+                        <ui:GetOCRText.OCREngine>
+                          <ActivityFunc x:TypeArguments="sd:Image, scg:IEnumerable(scg:KeyValuePair(sd:Rectangle, x:String))">
+                            <ActivityFunc.Argument>
+                              <DelegateInArgument x:TypeArguments="sd:Image" Name="Image" />
+                            </ActivityFunc.Argument>
+                            <ui:GoogleOCR AllowedCharacters="{x:Null}" DeniedCharacters="{x:Null}" FilterRegion="{x:Null}" Invert="{x:Null}" Language="{x:Null}" Output="{x:Null}" Profile="{x:Null}" Scale="{x:Null}" ComputeSkewAngle="False" DisplayName="Tesseract OCR" ExtractWords="False" sap:VirtualizedContainerService.HintSize="200,22" sap2010:WorkflowViewState.IdRef="GoogleOCR_2" Image="[Image]" Text="[matnr]" />
+                          </ActivityFunc>
+                        </ui:GetOCRText.OCREngine>
+                        <ui:GetOCRText.Target>
+                          <ui:Target Element="{x:Null}" Selector="{x:Null}" Id="274389b7-2b9a-43a3-b5f0-4cec7dd75baa" InformativeScreenshot="d7af4890401d4d369cb30026363029a2">
+                            <ui:Target.ClippingRegion>
+                              <ui:Region Rectangle="378, 78, 79, 17" />
+                            </ui:Target.ClippingRegion>
+                            <ui:Target.TimeoutMS>
+                              <InArgument x:TypeArguments="x:Int32" />
+                            </ui:Target.TimeoutMS>
+                            <ui:Target.WaitForReady>
+                              <InArgument x:TypeArguments="ui:WaitForReady" />
+                            </ui:Target.WaitForReady>
+                          </ui:Target>
+                        </ui:GetOCRText.Target>
+                      </ui:GetOCRText>
+                      <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="334,91" sap2010:WorkflowViewState.IdRef="LogMessage_3" Level="Info" Message="[WficaExeErfassung]" />
+                    </Sequence>
+                  </ActivityAction>
+                </ui:WindowScope.Body>
+              </ui:WindowScope>
+            </Sequence>
+          </Sequence>
+        </ActivityAction>
+      </ui:MonitorEvents.Handler>
+      <ui:MonitorEvents.RepeatForever>
+        <Literal x:TypeArguments="x:Boolean" sap2010:WorkflowViewState.IdRef="Literal`1_1" Value="True" />
+      </ui:MonitorEvents.RepeatForever>
+      <ui:MonitorEvents.Triggers>
+        <ui:ClickImageTrigger BlockEvent="{x:Null}" ClippingRegion="{x:Null}" DisplayName="Click Image Trigger 'wfica32.exe Erfassung'" EventType="EVENT_ASYNCHRONOUS" sap:VirtualizedContainerService.HintSize="334,106" sap2010:WorkflowViewState.IdRef="ClickImageTrigger_2" KeyModifiers="None" MouseButton="BTN_LEFT" Selector="&lt;wnd app='wfica32.exe' cls='Transparent Windows Client' title='Erfassung / Deutsch Harald - \\Remote' /&gt;" TriggerMode="TriggerDown">
+          <ui:ClickImageTrigger.Image>
+            <ui:ImageTarget Image="{x:Null}" Accuracy="0.8" Profile="Basic" TargetImageBase64="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" />
+          </ui:ClickImageTrigger.Image>
+        </ui:ClickImageTrigger>
+      </ui:MonitorEvents.Triggers>
+    </ui:MonitorEvents>
+  </Sequence>
+</Activity>
